@@ -1,0 +1,44 @@
+<% @users = Adminuser.order("id desc") %>
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<div class="panel-title text-center">
+					<h1>Autoren <span class="badge"><%= @users.count %></span></h1>
+				</div>
+			</div>			
+			<div class="table-responsive">			
+			<table class="table table-condensed table-bordered table-striped table-hover">
+				<thead>					
+					<tr>
+						<th>Name & Foto</th>
+						<th>E-Mail</th>
+						<th>Posts</th>
+						<th class="right">Letzter login</th>
+					</tr>
+				</thead>
+				<% @users.each do |user| %>
+				<tbody>					
+					<tr>
+						<td>
+							<%= user.name %>
+							<% if user.avatar.present? %>
+								<%= image_tag user.avatar.thumb.url %>
+							<% end %>
+						</td>
+						<td><%= user.email %></td>							
+						<td>
+							<%= user.posts.count %>
+							<span class="small">Davon <%= user.posts.where(published: true).count %> veröffentlicht</span>
+						</td>
+						<td class="right">
+							<%= user.last_sign_in_at %> <span class="badge"><%= user.sign_in_count %></span>
+						</td>
+					</tr>					
+				</tbody>
+				<% end %>
+			</table>			
+			</div>
+		</div>
+	</div>
+</div>

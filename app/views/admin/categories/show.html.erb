@@ -1,0 +1,55 @@
+
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+		<p>
+			<%= link_to "Alle Kategorien", admin_categories_path, class: "btn btn-primary" %>
+			<%= link_to "bearbeiten", edit_admin_category_path(@category), class: "btn btn-primary" %>
+			<% unless @category.posts.any? %>
+				<%= link_to "löschen", admin_category_path(@category), class: "btn btn-danger", method: :delete, data: { confirm: 'Sicher löschen?' } %>
+			<% end %>
+		</p>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<div class="panel-title text-center">
+					<h1><%= @category.name %></h1>
+				</div>
+			</div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-sm-6">
+						<dl class="dl-horizontal">
+							<dt>Name:</dt>
+							<dd><%= @category.name %></dd>
+
+							<dt>Beschreibung:</dt>
+							<dd><%= @category.description %></dd>
+						</dl>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<% if @category.posts.any? %>
+		<div class="table-responsive">
+			<table class="table table-condensed table-bordered table-striped table-hover">
+				<thead>
+					<tr>						
+						<th>Post-Titel <span class="badge"><%= @category.posts.count %></span></th>
+						<th>Autor</th>
+						<th>Veröffentlicht?</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @category.posts.each do |post| %>
+						<tr>
+							<td><%= link_to post.title, admin_post_path(post) %></td>
+							<td><%= post.author %></td>
+							<td><%= post.published ? "Ja" : "Nein" %></td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+		<% end %>
+	</div>
+</div>

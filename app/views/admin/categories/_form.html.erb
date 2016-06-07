@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <%= form_for [:admin, @category] do |f| %>
+
+          <% @category.errors.each do |attr, msg| %>
+            <div class="errors">
+              <%= image_tag ("error.png") %>
+              <%= "#{attr} #{msg}" if @category.errors[attr].first == msg %>
+            </div>
+          <% end %>
+      
+          <div class="form-group">
+            <%= f.label "Name:" %><br>
+            <%= f.text_field :name %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label "Beschreibung:" %><br>
+            <%= f.text_field :description %>
+          </div>
+
+      <p>
+        <%= f.submit "Speichern", class: "btn btn-danger" %>
+      </p>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <%= form_for [:admin, @post] do |f| %>
+      
+          <% @post.errors.each do |attr, msg| %>
+            <div class="errors">
+              <%= image_tag ("error.png") %>
+              <%= "#{attr} #{msg}" if @post.errors[attr].first == msg %>
+            </div>
+          <% end %>
+      
+          <div class="form-group">
+            <%= f.label "Kategorie:" %><br>
+            <%= f.collection_select :category_id, Category.all, :id, :name %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label "Titel:" %><br>
+            <%= f.text_field :title %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label "Untertitel:" %><br>
+            <%= f.text_field :subtitle %>
+          </div>
+        
+          <div class="form-group">
+            <%= f.label "Bild:" %><br>
+            <%= f.text_field :image %>
+          </div>
+      
+          <div class="form-group">
+            <%= f.label "Inhalt:" %><br>
+            <%= f.text_area :text, rows: 10 %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label "Veröffentlichen:" %><br>
+            <%= f.check_box :published %>
+          </div>     
+     
+      <p>
+        <%= f.submit "Speichern", class: "btn btn-danger" %>
+      </p>
+    <% end %>
+  </div>
+</div>

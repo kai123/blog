@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  	<%= csrf_meta_tags %>
+    <title>Querdenker.de</title>
+  </head>
+  <body>
+  	<%= render 'topnav' %>
+	<div class="row" style="margin: 0">
+		<div class="container">
+			<div class="col-md-12">
+			<% flash.each do |name, msg| %>
+				<% if msg.is_a?(String) %>
+					<div class="alert alert-<%= name == "notice" ? "success" : "danger" %>">
+						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+					<%= content_tag :div, msg, id:"flash_#{name}" %>
+					</div>
+				<% end %>
+			<% end %>		
+		</div>
+	</div>
+	<%= yield %>
+  </body>
+</html>

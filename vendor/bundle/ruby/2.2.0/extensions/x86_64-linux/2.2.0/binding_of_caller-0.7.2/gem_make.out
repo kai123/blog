@@ -1,0 +1,12 @@
+/usr/bin/ruby2.2 -r ./siteconf20160419-9376-1jldy5b.rb extconf.rb 
+
+make "DESTDIR=" clean
+make: *** Keine Regel, um »clean« zu erstellen.  Schluss.
+
+make "DESTDIR="
+echo "Nada."
+Nada.
+
+make "DESTDIR=" install
+echo "Nada."
+Nada.

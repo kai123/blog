@@ -1,0 +1,49 @@
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<div class="panel-title text-center">
+					<h1>Posts <span class="badge"><%= @posts.count %></span></h1>
+						<%= link_to "+", new_admin_post_path %>
+				</div>
+
+			</div>			
+			<div class="panel-body">
+				<%= form_tag admin_posts_path, :method => 'get' do %>
+				  <p>
+				  	<%= select("author", "adminuser_id", Adminuser.all.collect {|p| [ p.name, p.id ] }, {include_blank: 'Alle'}) %>
+				    <%= text_field_tag :search, params[:search] %>
+				    <%= submit_tag "Suchen", :name => nil %>
+				  </p>
+				<% end %>
+			</div>
+			<div class="table-responsive">
+			<table class="table table-condensed table-bordered table-striped table-hover">
+				<thead>
+					<tr>						
+						<th>Titel</th>
+						<th>Untertitel</th>
+						<th>Inhalt</th>
+						<th>Autor</th>
+						<th>Veröffentlicht?</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @posts.each do |post| %>
+						<tr>
+							<td><%= link_to post.title, admin_post_path(post) %></td>
+							<td><%= post.subtitle %></td>
+							<td>
+								<%= truncate(post.text, length: 95) %>
+								<%= link_to "...mehr", admin_post_path(post) %>
+							</td>
+							<td><%= post.author %></td>
+							<td><%= post.published ? "Ja" : "Nein" %></td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>			
+			</div>
+		</div>
+	</div>
+</div>

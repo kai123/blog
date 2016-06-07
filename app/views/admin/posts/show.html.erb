@@ -1,0 +1,48 @@
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+		<p>
+			<%= link_to "Alle Posts", admin_posts_path, class: "btn btn-primary" %>
+			<% if @post.adminuser_id == current_adminuser.id %>
+			<%= link_to "bearbeiten", edit_admin_post_path(@post), class: "btn btn-primary" %>			
+			<%= link_to "löschen", admin_post_path(@post), class: "btn btn-danger", method: :delete, data: { confirm: 'Sicher löschen?' } %>
+			<% end %>
+		</p>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<div class="panel-title text-center">
+					<h1><%= @post.title %></h1>
+				</div>
+			</div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-sm-6">
+						<dl class="dl-horizontal">
+							<dt>Veröffentlicht:</dt>
+							<dd><%= @post.published ? "Ja" : "Nein" %></dd>
+
+							<dt>Autor:</dt>
+							<dd><%= @post.author %></dd>
+
+							<dt>Kategorie:</dt>
+							<dd><%= @post.category.name %></dd>
+
+							<% if @post.image.present? %>
+							<dt>Bild:</dt>
+							<dd><%= @post.image %></dd>
+							<% end %>
+
+							<dt>Titel:</dt>
+							<dd><%= @post.title %></dd>
+
+							<dt>Untertitel:</dt>
+							<dd><%= @post.subtitle %></dd>
+							<br>
+							<dt>Inhalt:</dt>
+							<dd><%= @post.text %></dd>
+						</dl>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

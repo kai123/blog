@@ -1,0 +1,17 @@
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+		<p>
+			<%= link_to "Alle Posts", root_path, class: "btn btn-primary" %>
+		</p>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h2 class="panel-title text-center">
+					<h1 class="text-center"> Bearbeiten </h1>
+					<h2 class="text-center"><%= @post.title %>
+				</h2>				
+			</div>
+		</div>
+	</div>
+</div>
+
+<%= render 'form' %>
