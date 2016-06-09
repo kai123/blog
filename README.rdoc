@@ -1,6 +1,12 @@
-== README
+== Learning by doing
 
-Basic Blog App 
+Basic Blog App
 
-** Work is in progress
-** Made with <3 but not actually made
+* Work is in progress
+
+* Made with <3 but not actually made
+
+* Many Todo's ;)
+
+
+* ¯\_(ツ)_/¯...
