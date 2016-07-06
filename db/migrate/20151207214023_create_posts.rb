@@ -4,6 +4,7 @@ class CreatePosts < ActiveRecord::Migration
       t.belongs_to :adminuser, index: true
       t.string :title
       t.text :text
+      t.text :sources
       t.string :author
       t.string :subtitle
       t.string :image

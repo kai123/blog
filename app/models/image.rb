@@ -1,8 +1,6 @@
 class Image < ActiveRecord::Base
 
-	validates_processing_of :image
-	validate :image_size_validation
- 
+	validate :image_size_validation 
 	mount_uploader :image, ImageUploader
 
 	private

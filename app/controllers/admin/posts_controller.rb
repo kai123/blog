@@ -19,7 +19,7 @@ class Admin::PostsController < AdminController
 
 	def destroy
 		if @post.destroy
-			redirect_to root_url, notice: 'Post gelöscht.'
+			redirect_to admin_posts_url, notice: 'Post gelöscht.'
 		else
 			redirect_to admin_post_url(@post), alert: 'Ups, das hätte nicht passieren sollen!'
 		end
@@ -29,7 +29,7 @@ class Admin::PostsController < AdminController
 		@post = Post.new(post_params)
 		set_adminuser
 		if @post.save
-			redirect_to root_url, notice: 'Post erstellt.'
+			redirect_to admin_posts_url, notice: 'Post erstellt.'
 		else
 			render action: 'new'
 		end
@@ -38,7 +38,7 @@ class Admin::PostsController < AdminController
 	def update
 		set_adminuser
 		if @post.update(post_params)
-			redirect_to root_url, notice: 'Post bearbeitet.'
+			redirect_to admin_posts_url, notice: 'Post bearbeitet.'
 		else
 			render action: 'edit'
 		end
@@ -47,7 +47,7 @@ class Admin::PostsController < AdminController
 
 	private
 		def set_post
-			@post = Post.find(params[:id])
+			@post = Post.friendly.find(params[:id])
 		end
 
 		def set_adminuser
@@ -56,6 +56,6 @@ class Admin::PostsController < AdminController
 		end
 
 		def post_params
-			params.require(:post).permit(:search, :adminuser_id, :category_id, :published, :title, :text, :author, :subtitle, :image, :remove_image)
+			params.require(:post).permit(:sources, :search, :adminuser_id, :category_id, :published, :title, :text, :author, :subtitle, :image, :remove_image)
 		end
 end

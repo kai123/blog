@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     resources :categories
     resources :images
     get 'writers', to: 'pages#writers'
+end
+
   end
   #root 'admin/posts#index'
   scope module: 'frontend' do

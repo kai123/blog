@@ -1,4 +1,7 @@
 class Post < ActiveRecord::Base
+	extend FriendlyId
+	friendly_id :title, use: :history
+
 	validates :author, presence: true
 	validates :title, presence: true
 	validates :text, presence: true
