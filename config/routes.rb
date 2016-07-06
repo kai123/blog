@@ -14,9 +14,8 @@ Rails.application.routes.draw do
     resources :categories
     resources :images
     get 'writers', to: 'pages#writers'
-end
-
   end
+
   #root 'admin/posts#index'
   scope module: 'frontend' do
     get "kategorien" => "pages#categories", as: "kategorien"
@@ -28,4 +27,5 @@ end
   root :to => "frontend/pages#index"
   match '*path', via: [:get, :post, :put, :options, :propfind], to: 'frontend/pages#error_404'
   match '/', via: [:options, :post, :webdav], to: 'frontend/pages#error_404'
+  
 end
